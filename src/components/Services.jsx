@@ -23,16 +23,18 @@ const plans = [
     }
 ];
 
-const Services = () => {
+const Services = ({ onBook }) => {
     const { addToCart } = useCart();
 
     const handleBookService = (plan) => {
-        addToCart({
-            id: 'service-' + plan.name.toLowerCase().replace(' ', '-'),
-            name: plan.name,
-            price: plan.price,
-            image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=150&q=80' // Generic grooming image
-        });
+        if (onBook) {
+            onBook(plan.name);
+        }
+        // Scroll to contact section for booking
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     return (

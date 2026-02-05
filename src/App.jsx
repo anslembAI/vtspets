@@ -35,15 +35,19 @@ const Layout = ({ children }) => {
   );
 };
 
-const HomePage = () => (
-  <>
-    <Hero />
-    <CategoryGrid />
-    <ProductSection />
-    <Services />
-    <Contact />
-  </>
-);
+const HomePage = () => {
+  const [selectedService, setSelectedService] = useState('');
+
+  return (
+    <>
+      <Hero />
+      <CategoryGrid />
+      <ProductSection />
+      <Services onBook={setSelectedService} />
+      <Contact selectedService={selectedService} />
+    </>
+  );
+};
 
 import { UserProvider } from './contexts/UserContext';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
-const Contact = () => {
+const Contact = ({ selectedService }) => {
     return (
         <section id="contact" className="section contact-section">
             <div className="container">
@@ -40,12 +40,28 @@ const Contact = () => {
 
                     <form className="contact-form">
                         <div className="form-group">
+                            <label>Service / Package</label>
+                            <input
+                                type="text"
+                                placeholder="General Inquiry or Package Name"
+                                defaultValue={selectedService}
+                                key={selectedService} // Force re-render when prop changes
+                            />
+                        </div>
+                        <div className="form-group">
                             <label>Name</label>
                             <input type="text" placeholder="Your name" />
                         </div>
                         <div className="form-group">
                             <label>Email</label>
                             <input type="email" placeholder="Your email" />
+                        </div>
+                        <div className="form-group">
+                            <label>Date & Time (For Bookings)</label>
+                            <div style={{ display: 'flex', gap: '1rem' }}>
+                                <input type="date" className="w-full" />
+                                <input type="time" className="w-full" />
+                            </div>
                         </div>
                         <div className="form-group">
                             <label>Message</label>
