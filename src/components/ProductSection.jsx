@@ -30,13 +30,17 @@ const ProductSection = () => {
                         <div key={product.id} className="product-card">
                             <div className="product-image-container">
                                 <img src={product.img} alt={product.name} />
-                                <button className="add-to-cart-btn" aria-label="Add to cart" onClick={() => handleAddToCart(product)}>
-                                    <ShoppingCart size={18} />
-                                </button>
                             </div>
                             <div className="product-details">
                                 <h3 className="product-name">{product.name}</h3>
                                 <p className="product-price">{product.price}</p>
+                                <button
+                                    className="btn btn-primary"
+                                    style={{ width: '100%', marginTop: '1rem', padding: '0.5rem 1rem', fontSize: '0.9rem' }}
+                                    onClick={() => handleAddToCart(product)}
+                                >
+                                    Add to Cart
+                                </button>
                             </div>
                         </div>
                     ))}
