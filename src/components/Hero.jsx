@@ -1,6 +1,13 @@
 import React from 'react';
 
 const Hero = () => {
+    const handleShopNow = () => {
+        const categorySection = document.getElementById('categories');
+        if (categorySection) {
+            categorySection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <section id="about" className="hero-section">
             <div className="hero-container">
@@ -15,7 +22,7 @@ const Hero = () => {
                     <div className="hero-content-side">
                         <h1 className="hero-title">Pet Shop <br /> Supplies</h1>
                         <p className="hero-desc">Quality products for your best friend.</p>
-                        <button className="btn btn-primary">SHOP NOW</button>
+                        <button className="btn btn-primary" onClick={handleShopNow}>SHOP NOW</button>
                     </div>
                 </div>
             </div>

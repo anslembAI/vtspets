@@ -8,9 +8,19 @@ const categories = [
     { id: 4, name: 'Fish', bg: '#EB5757', icon: <Fish size={40} /> }
 ];
 
-const CategoryGrid = () => {
+const CategoryGrid = ({ onCategorySelect }) => {
+    const handleCategoryClick = (categoryName) => {
+        if (onCategorySelect) {
+            onCategorySelect(categoryName);
+        }
+        const shopSection = document.getElementById('shop');
+        if (shopSection) {
+            shopSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
-        <section className="section categories-section">
+        <section id="categories" className="section categories-section">
             <div className="container">
                 <h2 className="section-title">Shop by Category</h2>
                 <div className="category-grid">
@@ -19,6 +29,7 @@ const CategoryGrid = () => {
                             <div
                                 className="category-card"
                                 style={{ '--cat-color': cat.bg }}
+                                onClick={() => handleCategoryClick(cat.name)}
                             >
                                 <div className="category-icon-wrapper">
                                     {cat.icon}

@@ -37,12 +37,13 @@ const Layout = ({ children }) => {
 
 const HomePage = () => {
   const [selectedService, setSelectedService] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   return (
     <>
       <Hero />
-      <CategoryGrid />
-      <ProductSection />
+      <CategoryGrid onCategorySelect={setSelectedCategory} />
+      <ProductSection selectedCategory={selectedCategory} />
       <Services onBook={setSelectedService} />
       <Contact selectedService={selectedService} />
     </>
