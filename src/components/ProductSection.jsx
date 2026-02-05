@@ -1,0 +1,44 @@
+import React from 'react';
+import { ShoppingCart } from 'lucide-react';
+
+const products = [
+    { id: 1, name: 'Premium Collar', price: '$24.00', img: 'https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?auto=format&fit=crop&w=400&q=80' },
+    { id: 2, name: 'Portable Carrier', price: '$85.00', img: 'https://images.unsplash.com/photo-1595182963162-42ed2d346399?auto=format&fit=crop&w=400&q=80' },
+    { id: 3, name: 'Ceramic Bowl', price: '$15.00', img: 'https://images.unsplash.com/photo-1543169107-5b6510d96d99?auto=format&fit=crop&w=400&q=80' },
+    { id: 4, name: 'Chew Toy', price: '$12.00', img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=400&q=80' }
+];
+
+const ProductSection = () => {
+    return (
+        <section className="section product-section">
+            <div className="container">
+                <h2 className="section-title">Pet Accessories</h2>
+                <div className="product-grid">
+                    {products.map((product) => (
+                        <div key={product.id} className="product-card">
+                            <div className="product-image-container">
+                                <img src={product.img} alt={product.name} />
+                                <button className="add-to-cart-btn" aria-label="Add to cart">
+                                    <ShoppingCart size={18} />
+                                </button>
+                            </div>
+                            <div className="product-details">
+                                <h3 className="product-name">{product.name}</h3>
+                                <p className="product-price">{product.price}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="promo-banner">
+                    <div className="promo-content">
+                        <h3>Up to 50% Off!</h3>
+                        <button className="btn btn-secondary">VIEW DEALS</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default ProductSection;
