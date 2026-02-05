@@ -88,7 +88,7 @@ const AuthModal = ({ isOpen, onClose }) => {
 
                 <div className="auth-footer">
                     <p>
-                        {isLogin ? "Don't have an affair?" : "Already have an account?"}
+                        {isLogin ? "Don't have an account?" : "Already have an account?"}
                         <button
                             className="link-btn"
                             onClick={() => { setIsLogin(!isLogin); setError(''); }}
