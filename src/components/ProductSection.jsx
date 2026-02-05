@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../contexts/CartContext';
 
 const products = [
     { id: 1, name: 'Premium Collar', price: '$24.00', img: 'https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?auto=format&fit=crop&w=400&q=80' },
@@ -9,8 +10,19 @@ const products = [
 ];
 
 const ProductSection = () => {
+    const { addToCart } = useCart();
+
+    const handleAddToCart = (product) => {
+        addToCart({
+            id: product.id,
+            name: product.name,
+            price: parseFloat(product.price.replace('$', '')),
+            image: product.img
+        });
+    };
+
     return (
-        <section className="section product-section">
+        <section id="shop" className="section product-section">
             <div className="container">
                 <h2 className="section-title">Pet Accessories</h2>
                 <div className="product-grid">
@@ -18,7 +30,7 @@ const ProductSection = () => {
                         <div key={product.id} className="product-card">
                             <div className="product-image-container">
                                 <img src={product.img} alt={product.name} />
-                                <button className="add-to-cart-btn" aria-label="Add to cart">
+                                <button className="add-to-cart-btn" aria-label="Add to cart" onClick={() => handleAddToCart(product)}>
                                     <ShoppingCart size={18} />
                                 </button>
                             </div>

@@ -11,6 +11,9 @@ import './App.css';
 import './admin.css';
 import './auth.css';
 
+import { CartProvider } from './contexts/CartContext';
+import CartDrawer from './components/CartDrawer';
+
 // Wrapper to conditionally show Navbar/Footer
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -27,6 +30,7 @@ const Layout = ({ children }) => {
           </div>
         </footer>
       )}
+      {!isAdmin && <CartDrawer />}
     </div>
   );
 };
@@ -46,14 +50,16 @@ import { UserProvider } from './contexts/UserContext';
 function App() {
   return (
     <UserProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <CartProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </CartProvider>
     </UserProvider>
   );
 }

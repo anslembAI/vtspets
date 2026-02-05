@@ -2,8 +2,8 @@ import React from 'react';
 
 const Hero = () => {
     return (
-        <section className="hero">
-            <div className="container">
+        <section id="about" className="hero-section">
+            <div className="hero-container">
                 <div className="hero-card">
                     <div className="hero-image-side">
                         <img

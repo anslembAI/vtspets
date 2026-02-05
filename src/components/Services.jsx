@@ -1,5 +1,6 @@
 import React from 'react';
 import { Check } from 'lucide-react';
+import { useCart } from '../contexts/CartContext';
 
 const plans = [
     {
@@ -23,6 +24,17 @@ const plans = [
 ];
 
 const Services = () => {
+    const { addToCart } = useCart();
+
+    const handleBookService = (plan) => {
+        addToCart({
+            id: 'service-' + plan.name.toLowerCase().replace(' ', '-'),
+            name: plan.name,
+            price: plan.price,
+            image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=150&q=80' // Generic grooming image
+        });
+    };
+
     return (
         <section id="services" className="section services-section">
             <div className="container">
@@ -51,7 +63,10 @@ const Services = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <button className={`btn ${plan.highlight ? 'btn-primary' : 'btn-outline'} w-full`}>
+                            <button
+                                className={`btn ${plan.highlight ? 'btn-primary' : 'btn-outline'} w-full`}
+                                onClick={() => handleBookService(plan)}
+                            >
                                 Book Now
                             </button>
                         </div>

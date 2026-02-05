@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ShoppingBag, Search, Menu, User, LogOut, LayoutDashboard } from 'lucide-react';
 import { useUser } from '../contexts/UserContext';
+import { useCart } from '../contexts/CartContext';
 import AuthModal from './AuthModal';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ const Navbar = () => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useUser();
+  const { toggleCart, itemCount, setIsOpen } = useCart();
   const navigate = useNavigate();
 
   return (
@@ -22,6 +24,7 @@ const Navbar = () => {
             <a href="/" className="nav-link active">Home</a>
             <a href="#about" className="nav-link">About</a>
             <a href="#shop" className="nav-link">Shop</a>
+            <a href="#services" className="nav-link">Appointments</a>
             <a href="#contact" className="nav-link">Contact</a>
           </div>
 
@@ -29,9 +32,9 @@ const Navbar = () => {
             <button className="icon-btn" aria-label="Search">
               <Search size={20} strokeWidth={2.5} />
             </button>
-            <button className="icon-btn cart-btn" aria-label="Cart">
+            <button className="icon-btn cart-btn" aria-label="Cart" onClick={() => setIsOpen(true)}>
               <ShoppingBag size={20} strokeWidth={2.5} />
-              <span className="cart-badge">2</span>
+              {itemCount > 0 && <span className="cart-badge">{itemCount}</span>}
             </button>
 
             {user ? (

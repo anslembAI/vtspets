@@ -36,7 +36,7 @@ const Admin = () => {
         bankAccountId: "",
         status: "Draft",
         paymentMethod: "",
-        taxApplied: true,
+        taxApplied: false,
         cashTendered: 0, // NEW: For POS
         items: []
     });
@@ -139,7 +139,7 @@ const Admin = () => {
 
     // Calculations
     const calculateSubtotal = () => newInvoice.items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
-    const calculateTax = () => newInvoice.taxApplied ? calculateSubtotal() * 0.125 : 0; // 12.5% Tax
+    const calculateTax = () => newInvoice.taxApplied ? calculateSubtotal() * 0 : 0; // 0% Tax
     const calculateTotal = () => calculateSubtotal() + calculateTax();
     const calculateChange = () => {
         if (!newInvoice.cashTendered) return 0;
@@ -185,7 +185,8 @@ const Admin = () => {
         }
 
         setIsInvoiceModalOpen(false);
-        setNewInvoice({ userId: "", currency: "TTD", notes: "", bankAccountId: "", status: "Draft", paymentMethod: "", taxApplied: true, cashTendered: 0, items: [] });
+        setIsInvoiceModalOpen(false);
+        setNewInvoice({ userId: "", currency: "TTD", notes: "", bankAccountId: "", status: "Draft", paymentMethod: "", taxApplied: false, cashTendered: 0, items: [] });
         refreshData();
     };
 
@@ -224,7 +225,7 @@ const Admin = () => {
         ]);
 
         const totalAmt = invoice.items.reduce((sum, i) => sum + (i.quantity * i.price), 0);
-        const taxAmt = invoice.taxApplied ? totalAmt * 0.125 : 0;
+        const taxAmt = invoice.taxApplied ? totalAmt * 0 : 0;
 
         autoTable(doc, {
             startY: 75,
@@ -248,7 +249,7 @@ const Admin = () => {
         }
 
         doc.text(`Subtotal: $${totalAmt.toFixed(2)}`, 140, finalY);
-        doc.text(`Tax (12.5%): $${taxAmt.toFixed(2)}`, 140, finalY + 5);
+        // doc.text(`Tax (12.5%): $${taxAmt.toFixed(2)}`, 140, finalY + 5);
         doc.setFontSize(14);
         doc.text(`Total: $${(totalAmt + taxAmt).toFixed(2)}`, 140, finalY + 12);
 
@@ -400,7 +401,7 @@ const Admin = () => {
                                         <tr key={inv.id}>
                                             <td>{inv.id}</td>
                                             <td>{inv.userName}</td>
-                                            <td>${(inv.items.reduce((s, i) => s + (i.quantity * i.price), 0) * (inv.taxApplied ? 1.125 : 1)).toFixed(2)}</td>
+                                            <td>${(inv.items.reduce((s, i) => s + (i.quantity * i.price), 0) * (inv.taxApplied ? 1 : 1)).toFixed(2)}</td>
                                             <td>{inv.status}</td>
                                             <td>
                                                 <button onClick={() => handleDownloadPDF(inv)} className="icon-btn"><Download size={16} /></button>
@@ -476,9 +477,9 @@ const Admin = () => {
 
                                     <div className="totals-section border-t pt-4">
                                         <div className="flex justify-between items-center mb-2">
-                                            <div className="flex items-center gap-2">
+                                            <div className="flex items-center gap-2" style={{ display: 'none' }}>
                                                 <input type="checkbox" checked={newInvoice.taxApplied} onChange={e => setNewInvoice({ ...newInvoice, taxApplied: e.target.checked })} />
-                                                <label>Apply Tax (12.5%)</label>
+                                                <label>Apply Tax (0%)</label>
                                             </div>
                                             <div className="text-right">
                                                 <p>Subtotal: ${calculateSubtotal().toFixed(2)}</p>
