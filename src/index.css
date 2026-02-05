@@ -2,38 +2,42 @@
 
 :root {
   /* Brand Colors */
-  --color-primary: #D96C32; /* Terracotta / Burnt Orange */
+  --color-primary: #D96C32;
+  /* Terracotta / Burnt Orange */
   --color-primary-hover: #b95825;
-  --color-secondary: #133D32; /* Deep Forest Green */
+  --color-secondary: #133D32;
+  /* Deep Forest Green */
   --color-secondary-hover: #0d2c24;
-  --color-accent: #F2E8D5; /* Warm Beige/Cream */
-  --color-background: #FDFBF7; /* Soft White */
-  
+  --color-accent: #F2E8D5;
+  /* Warm Beige/Cream */
+  --color-background: #FDFBF7;
+  /* Soft White */
+
   /* Text Colors */
   --color-text-main: #1A1A1A;
   --color-text-muted: #666666;
   --color-white: #FFFFFF;
-  
+
   /* Typography */
   --font-main: 'Outfit', sans-serif;
-  
+
   /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
   --spacing-lg: 4rem;
   --spacing-xl: 8rem;
-  
+
   /* UI Elements */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-full: 9999px;
-  
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-  --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
-  --shadow-lg: 0 16px 32px rgba(0,0,0,0.12);
-  
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+
   --container-width: 1200px;
 }
 
@@ -97,7 +101,12 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.2;
   font-weight: 700;
 }
